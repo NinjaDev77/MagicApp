@@ -40,10 +40,12 @@ const mutations = {
       state.isAuthenticated = true;
       state.token = localStorage.getItem('token');
       state.user = JSON.parse(localStorage.getItem('user'));
+      router.push('/magic');
     } else {
       state.isAuthenticated = false;
       state.token = '';
       state.user = {};
+      router.push('/login');
     }
   },
   toggleForgotPasswordClicked:(state)=>{

@@ -7,14 +7,15 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="#">Magic App</a>
           </div>
+
           <ul class="nav navbar-nav navbar-right">
+            <li class="">Zapier Access Token</li>
             <li class="dropdown">
               <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 <span class="glyphicon glyphicon-user"></span>Profile<b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><a @click="onSignOut">Logout</a></li>
-                <li><a href="#">Another action</a></li>
               </ul>
             </li>
           </ul>
@@ -33,7 +34,6 @@
     },
     methods:{
       onSignOut(){
-        console.log('In logout');
         this.$store.dispatch('userSignOut');
       }
     }
