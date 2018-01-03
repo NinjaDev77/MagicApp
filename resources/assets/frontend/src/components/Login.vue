@@ -11,7 +11,7 @@
           </div>
           <div class="row form-group">
             <div class="col-md-12">
-              <label class="control-label col-xs-2">Email {{test}}</label>
+              <label class="control-label col-xs-2">Email</label>
               <div class="col-xs-10">
                 <input type="email" class="form-control" placeholder="Email" v-model="user.email">
               </div>
@@ -57,12 +57,6 @@
       onLogin () {
         this.$store.dispatch('userSignIn', this.user)
       },
-    },
-    // Mapping getters
-    computed: {
-      ...mapGetters([
-        'test'
-      ])
     }
   }
 </script>

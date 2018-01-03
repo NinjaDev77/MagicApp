@@ -6,7 +6,6 @@ const state = {
   token: '',
   user:{},
   forgotPassClicked:false,
-  test : "test"
 };
 
 const getters = {
@@ -18,12 +17,6 @@ const getters = {
   },
   user: (state) => {
     return state.user;
-  },
-  forgotPassClicked:(state) =>{
-    return state.forgotPassClicked
-  },
-  test:(state)=>{
-    return state.test
   }
 };
 
@@ -92,7 +85,11 @@ const actions = {
           console.log(err);
         }
       )
-  }
+  },
+    userSignOut:({commit})=>{
+      commit('userSignOut');
+      router.push('/login');
+    }
 };
 
 export default { state, getters, mutations, actions }

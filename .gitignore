@@ -67,3 +67,4 @@ public/build
 resources/assets/frontend/node_modules
 
 vendor
+.idea

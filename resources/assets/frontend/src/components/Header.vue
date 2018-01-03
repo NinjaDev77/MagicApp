@@ -13,7 +13,7 @@
                 <span class="glyphicon glyphicon-user"></span>Profile<b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">Logout</a></li>
+                <li><a @click="onSignOut">Logout</a></li>
                 <li><a href="#">Another action</a></li>
               </ul>
             </li>
@@ -29,7 +29,12 @@
   export default {
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+      }
+    },
+    methods:{
+      onSignOut(){
+        console.log('In logout');
+        this.$store.dispatch('userSignOut');
       }
     }
   }
