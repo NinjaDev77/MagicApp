@@ -13,7 +13,7 @@
             <div class="col-md-12">
               <label class="control-label col-md-2">Zap Name</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Zap Name" v-model="newZap.name" required>
+                <input type="text" class="form-control" placeholder="Zap Name" v-model="newZap.zapName" required>
               </div>
             </div>
           </div>
@@ -26,10 +26,10 @@
           <div class="clearfix"></div>
           <div class="row form-group" v-for="(param,zapIndex) in newZap.params">
             <div class="col-md-3">
-              <input type="text" class="form-control" placeholder="Name" v-model="param.field" required>
+              <input type="text" class="form-control" placeholder="Name" v-model="param.zapField" required>
             </div>
             <div class="col-md-3">
-              <select class="form-control" v-model="param.validationType" required>
+              <select class="form-control" v-model="param.validationId" required>
                 <option value="">Select Options</option>
                 <option v-for="(item, index) in validationType" :value="item.id">
                   {{item.type}}
@@ -37,7 +37,7 @@
               </select>
             </div>
             <div class="col-md-3">
-              <input type="text" class="form-control" placeholder="Value" v-model="param.value" required>
+              <input type="text" class="form-control" placeholder="Value" v-model="param.zapValue" required>
             </div>
             <div class="col-md-1">
               <a @click="addRemoveZapParams(zapIndex,3)" ><span class="glyphicon glyphicon-minus"></span></a>
@@ -78,12 +78,12 @@
         ],
         newZap:{
           id:'',
-          name:'',
+          zapName:'',
           params:[
             {
-              field:'',
-              validationType:'',
-              value:''
+              zapField:'',
+              validationId:'',
+              zapValue:''
             }
           ]
         },
@@ -96,9 +96,9 @@
       addRemoveZapParams(index,type){
         if (type==2){
           this.newZap.params.push({
-           field:'',
-           validationType:'',
-           value:''
+            zapField:'',
+            validationId:'',
+            zapValue:''
           })
         } else {
           //console.log(index);
@@ -110,6 +110,7 @@
           obj.newZap = this.newZap;
           obj.user= this.user;
           console.log(obj);
+          this.$store.dispatch('createNewZap',obj);
         }
     },
       computed: {

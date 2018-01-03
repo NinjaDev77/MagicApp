@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import auth from './modules/auth'
+import Auth from './modules/auth';
+import Zap from './modules/zap';
+
 
 Vue.use(Vuex)
 
@@ -10,6 +12,7 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    auth
+    Auth,
+    Zap
   }
 })
