@@ -63,3 +63,7 @@ public/build
 
 ./public/node_modules
 ./public/build
+
+resources/assets/frontend/node_modules
+
+vendor

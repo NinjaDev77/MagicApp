@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('');
+// });
+Route::get('/{anyRoutes}', function () {
+    return response()->file(public_path() . '/index.html');
+})->where('anyRoutes', '^((?!(api)).)*$');
