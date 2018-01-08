@@ -67,7 +67,10 @@ const actions = {
           }
         },
         (err) => {
-          console.log(err);
+          var message = err.body.message;
+          console.log(message);
+          commit('errorMessage',message);
+          commit('errorTrue');
         }
       )
   },
@@ -84,7 +87,9 @@ const actions = {
           }
         },
         (err) => {
-          console.log(err);
+          var message = err.body.message;
+          commit('errorMessage',message);
+          commit('errorTrue');
         }
       )
   },

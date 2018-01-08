@@ -9,34 +9,65 @@
               <p style="text-align: center"><b>MAGIC APP</b></p>
             </div>
           </div>
-          <div class="row form-group">
+          <div class="row form-group"
+               v-bind:class="{ 'form-group--error': $v.userSU.email.$error }">
             <div class="col-md-12">
               <label class="control-label col-xs-2">Email</label>
               <div class="col-xs-10">
-                <input type="email" class="form-control" placeholder="Email" v-model="userSU.email">
+                <input type="email"
+                       class="form-control"
+                       placeholder="Email"
+                       v-model="userSU.email"
+                       @blur="$v.userSU.email.$touch">
+                <span class="form-group__message"
+                      v-if="!$v.userSU.email.required && $v.userSU.email.$error">
+                  Required!
+                </span>
+                <span class="form-group__message"
+                      v-if="!$v.userSU.email.email && $v.userSU.email.$error">
+                  Must be an email
+                </span>
               </div>
             </div>
           </div>
-          <div class="row form-group">
+          <div class="row form-group"
+               v-bind:class="{ 'form-group--error': $v.userSU.name.$error }">
             <div class="col-md-12">
               <label  class="control-label col-xs-2">Name</label>
               <div class="col-xs-10">
-                <input type="text" class="form-control"  placeholder="Name" v-model="userSU.name">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Name"
+                       v-model="userSU.name"
+                       @blur="$v.userSU.name.$touch">
+                <span class="form-group__message"
+                      v-if="!$v.userSU.name.required && $v.userSU.name.$error">
+                  Required!
+                </span>
               </div>
             </div>
           </div>
-          <div class="row form-group">
+          <div class="row form-group"
+               v-bind:class="{ 'form-group--error': $v.userSU.password.$error }">
             <div class="col-md-12">
               <label  class="control-label col-xs-2">Password</label>
               <div class="col-xs-10">
-                <input type="password" class="form-control"  placeholder="Password" v-model="userSU.password">
+                <input type="password"
+                       class="form-control"
+                       placeholder="Password"
+                       v-model="userSU.password"
+                       @blur="$v.userSU.password.$touch">
+                <span class="form-group__message"
+                      v-if="!$v.userSU.password.required && $v.userSU.password.$error">
+                  Required!
+                </span>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-4">
-              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="submit" class="btn btn-primary" :disabled="$v.userSU.$invalid">Register</button>
               <button type="reset" class="btn btn-primary">Reset</button>
             </div>
             <div class="col-md-3">
@@ -51,6 +82,7 @@
 </template>
 
 <script>
+  import { required, email} from 'vuelidate/lib/validators'
   export default {
     data () {
       return {
@@ -66,6 +98,20 @@
         this.$store.dispatch('userSignUp', this.userSU)
       },
     },
+    validations:{
+      userSU:{
+        name:{
+          required
+        },
+        email:{
+          required,
+          email
+        },
+        password:{
+          required
+        }
+      }
+    }
   }
 </script>
 
@@ -79,5 +125,10 @@
   .app_register {
     margin-top: 200px;
   }
-
+  .form-group--error input{
+    border-color: red;
+  }
+  .form-group__message{
+    color: red;
+  }
 </style>
